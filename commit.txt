@@ -1,0 +1,57 @@
+每次 git commit 之前 修改该文件中的内容
+以便于更好地了解当前项目的完成进度
+
+Finished Signup, Login and User page.
+
+完成了注册、登录和用户页面。
+知最低程度地完成了用户页面 /users/:userId
+接下来完成 自动登录 和 重复登录后挤掉初次登录 的特性。
+
+
+Finished Users, FollowButton, EditUser and other related page.
+
+完成了用户互相关注、修改用户信息等特性。
+完成了所有的用户方面的特性。
+接下来完成 自动登录 等特性。
+
+Finished auto login, but get redirected when refresh page in Private route Page.
+完成了用户持久化登录的特性。
+但在 Private 页面如 编辑用户 的页面中刷新页面时，会重定向到 登录 页面。
+
+Add isLoading state in AuthContext, redirect problem fixed, but found other problems.
+在 AuthContext 组建中添加了 isLoading 状态，在执行完 autoLogin 后将其设置为false，渲染 children。
+这样可以避免其他页面在初次渲染时，访问 AuthContext 中提供的 jwt 值为空的问题。
+接下来修改其他页面，切换为使用 AuthContext 中的 jwt 而非原来的 auth-helper。
+另外，在 User 页面中发现点击关注按钮后，按钮状态不匹配问题。
+接下来改为在 read API 中发送 数量值 而非发送整个数组，之后在客户端通过 length 属性获取数量值。
+可避免不必要的流量。
+
+Fixed FollowButton in User page, found other problem.
+修改了 read、follow 和 unfollow API 的返回值，避免了返回不必要的数据。
+发现了新的问题：
+登录时若没有勾选 记住我 ，登录后刷新页面会导致推出登录状态。
+原因可能是 AuthContext 中的 autoLogin effect 中执行 autoLogin 前没有判断 
+sessionStorage 中是否存在 loginToken 总是执行 autoLogin 导致。
+
+All found problems fixed.
+将检查 sessionStorage 中是否存在 loginToken 的逻辑改到了 autoLogin 的 then 中，
+即刷新页面时，总是要将 cookies 中的 loginToken 发送到服务器上检查是否过期，若已经过期，
+则重置登录状态。 
+
+Finished post feature.
+实现了用户发布、删除和点赞动态的特性。
+
+Finished comment feature.
+实现了用户 评论 和 评论的评论 的特性。
+接下来修复用户在非记住我登录后刷新页面丢失登录状态的问题。
+
+Fixed user login status lost after refresh page problem.
+修复了用户在非记住我登录后刷新页面丢失登录状态的问题。
+接下来添加用户注册时向邮箱发送验证码的特性。
+
+Finished captcha feature.
+添加了用户注册账户时需要输入验证码的特性。
+接下来添加用户上传视频的特性。
+
+Added screenshot for each page.
+添加了截图。
